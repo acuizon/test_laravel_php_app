@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', array('uses' => 'HomeController@showWelcome', 'as' => 'test'));
+// Route::get('/', array('uses' => 'HomeController@showWelcome', 'as' => 'test'));
+Route::get('/', function() {
+  return Redirect::to('item');
+});
 
 Route::get('sample', array('uses' => 'HomeControllers@sampleFunction', 'as' => 'wahaha'));
 

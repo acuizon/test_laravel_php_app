@@ -1,4 +1,8 @@
 <html>
+  @section('assets')
+    {{ stylesheet_link_tag('application') }}
+    {{ javascript_include_tag('application') }}
+  @show
   <body>
     <span>
       @section('header')
