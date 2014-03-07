@@ -3,7 +3,10 @@
 @section('content')
   <br>
   <br>
+  <p>{{ Session::get('message') }}</p>
   @if (Auth::user()->hasAdminRole())
+    <a href="{{ URL::to('admin') }}">ADMIN</a>
+    |
     <a href="{{ URL::route('item.create') }}">ADD ITEM</a>
   @endif
   <table>

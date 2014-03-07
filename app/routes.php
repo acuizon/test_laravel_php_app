@@ -30,7 +30,9 @@ Route::get('wla_lng', function()
 
 Route::group(array('before' => 'auth'), function()
 {
-  Route::resource('item', 'ItemController');  
+  Route::resource('item', 'ItemController');
+
+  Route::get('admin', array('before' => '', 'uses' => 'AdminController@index'));
 });
 
 Route::get('login', array('uses' => 'LoginController@index'));
@@ -38,3 +40,4 @@ Route::post('login', array('uses' => 'LoginController@doLogin'));
 Route::get('logout', array('uses' => 'LoginController@logout'));
 Route::get('signup', array('uses' => 'LoginController@signup'));
 Route::post('register', array('uses' => 'LoginController@register'));
+

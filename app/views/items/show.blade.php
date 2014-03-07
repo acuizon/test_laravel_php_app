@@ -23,9 +23,11 @@
 
   <br>
 
-  <a href="{{ URL::route('item.edit', $item->id) }}">Edit</a>
-  {{ Form::open(array('route' => array('item.destroy', $item->id), 'method' => 'delete')) }}
-      <button type="submit" href="{{ URL::route('item.destroy', $item->id) }}" class="btn btn-danger btn-mini">Delete</button>
-  {{ Form::close() }}
+  @if (Auth::user()->hasAdminRole())
+    <a href="{{ URL::route('item.edit', $item->id) }}">Edit</a>
+    {{ Form::open(array('route' => array('item.destroy', $item->id), 'method' => 'delete')) }}
+        <button type="submit" href="{{ URL::route('item.destroy', $item->id) }}" class="btn btn-danger btn-mini">Delete</button>
+    {{ Form::close() }}
+  @endif
 
 @stop

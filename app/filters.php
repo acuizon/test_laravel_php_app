@@ -78,3 +78,11 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+// Custom
+
+Route::filter('admin', function() {
+  if (!Auth::user()->hasAdminRole()) {
+    return Redirect::to('item')->with('message', "You don't have access.");
+  }
+});
