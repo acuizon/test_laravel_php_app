@@ -2,9 +2,10 @@
 
 @section('content')
   <br>
-  <br>  
-  <a href="{{ URL::route('item.create') }}">ADD ITEM</a>
-
+  <br>
+  @if (Auth::user()->hasAdminRole())
+    <a href="{{ URL::route('item.create') }}">ADD ITEM</a>
+  @endif
   <table>
     <thead>
       <tr>
@@ -24,10 +25,12 @@
           <td>{{ $item->stock }}</td>
           <td>
             <a href="{{ URL::route('item.show', $item->id) }}">View Item</a>
-            <a href="{{ URL::route('item.edit', $item->id) }}">Edit</a>
-            {{ Form::open(array('route' => array('item.destroy', $item->id), 'method' => 'delete')) }}
-              <button type="submit" href="{{ URL::route('item.destroy', $item->id) }}" class="btn btn-danger btn-mini">Delete</button>
-            {{ Form::close() }}
+            @if (Auth::user()->hasAdminRole())
+              <a href="{{ URL::route('item.edit', $item->id) }}">Edit</a>
+              {{ Form::open(array('route' => array('item.destroy', $item->id), 'method' => 'delete')) }}
+                <button type="submit" href="{{ URL::route('item.destroy', $item->id) }}" class="btn btn-danger btn-mini">Delete</button>
+              {{ Form::close() }}
+            @endif
           </td>
         </tr>
       @endforeach  

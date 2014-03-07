@@ -10,6 +10,15 @@
         <span style='float:right'>
           Welcome {{ Auth::user()->email }}
           <a href="{{ URL::to('logout') }}">LOGOUT</a>
+          <br>
+          Role/s:
+          @if (Auth::user()->roles())
+            @foreach (Auth::user()->roles()->get() as $role)
+              <p>{{ $role->name }}</p>
+            @endforeach
+          @else
+            None
+          @endif
         </span>
       @show
     </span>
